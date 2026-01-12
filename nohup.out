@@ -1,0 +1,14 @@
+INFO:     Will watch for changes in these directories: ['/home/ubuntu/Python-Assignment']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [4565] using StatReload
+INFO:     Started server process [4568]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     121.242.128.86:63769 - "GET /docs HTTP/1.1" 200 OK
+INFO:     121.242.128.86:63769 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Will watch for changes in these directories: ['/home/ubuntu/Python-Assignment']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [3007] using StatReload
+INFO:     Started server process [3010]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

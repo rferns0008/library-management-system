@@ -1,0 +1,182 @@
+{
+  "info": {
+    "name": "Library Management System - Manual Testing",
+    "description": "Postman collection for manual testing of the Library Management System FastAPI application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "book_id",
+      "value": ""
+    },
+    {
+      "key": "member_id",
+      "value": ""
+    },
+    {
+      "key": "loan_id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/books/",
+              "host": ["{{base_url}}"],
+              "path": ["books", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Clean Code\",\n  \"author\": \"Robert C. Martin\",\n  \"isbn\": \"ISBN-001\"\n}"
+            }
+          }
+        },
+        {
+          "name": "List Books",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/books/",
+              "host": ["{{base_url}}"],
+              "path": ["books", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Book By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/books/{{book_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["books", "{{book_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Book (Expected 400)",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/books/{{book_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["books", "{{book_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "Create Member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/members/",
+              "host": ["{{base_url}}"],
+              "path": ["members", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "List Members",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/members/",
+              "host": ["{{base_url}}"],
+              "path": ["members", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Member By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/members/{{member_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["members", "{{member_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loans",
+      "item": [
+        {
+          "name": "Create Loan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/loans/",
+              "host": ["{{base_url}}"],
+              "path": ["loans", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_id\": {{book_id}},\n  \"member_id\": {{member_id}}\n}"
+            }
+          }
+        },
+        {
+          "name": "Return Loan",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/loans/{{loan_id}}/return",
+              "host": ["{{base_url}}"],
+              "path": ["loans", "{{loan_id}}", "return"]
+            }
+          }
+        },
+        {
+          "name": "Return Loan Again (Expected 400)",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/loans/{{loan_id}}/return",
+              "host": ["{{base_url}}"],
+              "path": ["loans", "{{loan_id}}", "return"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

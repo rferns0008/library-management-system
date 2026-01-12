@@ -1,0 +1,70 @@
+venv) ubuntu@ip-10-0-0-193:~/Python-Assignment$ pytest --cache-clear -v
+===================================================================================== test session starts ======================================================================================
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /home/ubuntu/Python-Assignment/venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/ubuntu/Python-Assignment
+plugins: asyncio-1.3.0, anyio-4.12.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 11 items                                                                                                                                                                             
+
+tests/test_suites/test_books_api.py::test_create_book PASSED                                                                                                                             [  9%]
+tests/test_suites/test_books_api.py::test_list_books PASSED                                                                                                                              [ 18%]
+tests/test_suites/test_books_api.py::test_get_book_by_id PASSED                                                                                                                          [ 27%]
+tests/test_suites/test_books_api.py::test_duplicate_isbn_not_allowed PASSED                                                                                                              [ 36%]
+tests/test_suites/test_books_api.py::test_cannot_delete_book_with_active_loan PASSED                                                                                                     [ 45%]
+tests/test_suites/test_loans_api.py::test_create_and_get_loan PASSED                                                                                                                     [ 54%]
+tests/test_suites/test_loans_api.py::test_return_loan PASSED                                                                                                                             [ 63%]
+tests/test_suites/test_loans_api.py::test_double_return_not_allowed PASSED                                                                                                               [ 72%]
+tests/test_suites/test_members_api.py::test_create_member PASSED                                                                                                                         [ 81%]
+tests/test_suites/test_members_api.py::test_list_members PASSED                                                                                                                          [ 90%]
+tests/test_suites/test_members_api.py::test_get_member_by_id PASSED                                                                                                                      [100%]
+
+======================================================================================= warnings summary =======================================================================================
+app/schemas.py:15
+  /home/ubuntu/Python-Assignment/app/schemas.py:15: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class BookRead(BookCreate):
+
+venv/lib/python3.12/site-packages/pydantic/_internal/_config.py:383
+  /home/ubuntu/Python-Assignment/venv/lib/python3.12/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+  * 'orm_mode' has been renamed to 'from_attributes'
+    warnings.warn(message, UserWarning)
+
+app/schemas.py:31
+  /home/ubuntu/Python-Assignment/app/schemas.py:31: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class MemberRead(MemberCreate):
+
+app/schemas.py:48
+  /home/ubuntu/Python-Assignment/app/schemas.py:48: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class LoanRead(LoanCreate):
+
+tests/test_suites/test_books_api.py::test_create_book
+tests/test_suites/test_books_api.py::test_get_book_by_id
+tests/test_suites/test_books_api.py::test_duplicate_isbn_not_allowed
+tests/test_suites/test_books_api.py::test_duplicate_isbn_not_allowed
+tests/test_suites/test_books_api.py::test_cannot_delete_book_with_active_loan
+tests/test_suites/test_loans_api.py::test_create_and_get_loan
+tests/test_suites/test_loans_api.py::test_return_loan
+tests/test_suites/test_loans_api.py::test_double_return_not_allowed
+  /home/ubuntu/Python-Assignment/app/routers/books.py:15: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    db_book = Book(**book.dict())
+
+tests/test_suites/test_books_api.py::test_duplicate_isbn_not_allowed
+  /home/ubuntu/Python-Assignment/tests/conftest.py:29: SAWarning: transaction already deassociated from connection
+    transaction.rollback()
+
+tests/test_suites/test_loans_api.py::test_create_and_get_loan
+tests/test_suites/test_loans_api.py::test_return_loan
+tests/test_suites/test_loans_api.py::test_double_return_not_allowed
+tests/test_suites/test_members_api.py::test_create_member
+tests/test_suites/test_members_api.py::test_get_member_by_id
+  /home/ubuntu/Python-Assignment/app/routers/members.py:13: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    db_member = Member(**member.dict())
+
+tests/test_suites/test_loans_api.py::test_create_and_get_loan
+tests/test_suites/test_loans_api.py::test_return_loan
+tests/test_suites/test_loans_api.py::test_double_return_not_allowed
+  /home/ubuntu/Python-Assignment/app/routers/loans.py:14: PydanticDeprecatedSince20: The `dict` method is deprecated; use `model_dump` instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    db_loan = Loan(**loan.dict())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================================================================== 11 passed, 21 warnings in 0.57s ================================================================================
