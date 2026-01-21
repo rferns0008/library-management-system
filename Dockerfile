@@ -5,8 +5,8 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     # Set environment variables for database connections
-    DATABASE_URL=postgresql+asyncpg://library_user:StrongPassword123@postgresdb:5432/library_db \
-    TEST_DATABASE_URL=postgresql+asyncpg://library_user:StrongPassword123@loc:5432/library_db_test
+    DATABASE_URL=postgresql+asyncpg://library_user:StrongPassword123@pg-primary:5432/library_db \
+    TEST_DATABASE_URL=postgresql+asyncpg://library_user:StrongPassword123@pg-primary:5432/library_db_test
 
 # Set working directory inside container
 WORKDIR /app
