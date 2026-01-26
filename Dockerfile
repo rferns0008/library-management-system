@@ -4,9 +4,8 @@ FROM python:3.11-slim
 # Prevent Python from writing pyc files and buffering stdout/stderr
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    # Set environment variables for database connections
-    DATABASE_URL=postgresql+asyncpg://library_user:StrongPassword123@pg-primary:5432/library_db \
-    TEST_DATABASE_URL=postgresql+asyncpg://library_user:StrongPassword123@pg-primary:5432/library_db_test
+    # Set environment variable for database url
+    DATABASE_URL=""
 
 # Set working directory inside container
 WORKDIR /app
