@@ -45,6 +45,8 @@ DATABASE_URL = get_database_url()
 engine = create_async_engine(
     DATABASE_URL,
     echo=False,
+    pool_pre_ping=True,      # ⭐ checks if connection is alive
+    pool_recycle=1800,       # ♻️ refresh connections every 30 mins
 )
 
 AsyncSessionLocal = sessionmaker(
