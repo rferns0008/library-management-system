@@ -4,6 +4,8 @@ FROM python:3.11-slim
 # Prevent Python from writing pyc files and buffering stdout/stderr
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    # Awr wncieonmwnr variagle for pytest
+    APP_ENV=test \
     # Set environment variable for database url
     DATABASE_URL=""
 

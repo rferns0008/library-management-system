@@ -6,47 +6,38 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # -------------------------------------------------------------------
-# Logging (MUST be defined before use)
+# Logging
 # -------------------------------------------------------------------
 logger = logging.getLogger(__name__)
 
 # -------------------------------------------------------------------
 # Load environment variables
 # -------------------------------------------------------------------
-load_dotenv(override=True)
-
+load_dotenv(override=False)
 
 def get_database_url() -> str:
-    """
-    Returns the database URL with correct priority.
-
-    Priority:
-    1. TEST_DATABASE_URL when running pytest
-    2. DATABASE_URL otherwise
-    """
-    if os.getenv("PYTEST_CURRENT_TEST"):
-        db_url = os.getenv("TEST_DATABASE_URL")
-    else:
-        db_url = os.getenv("DATABASE_URL")
-
+    db_url = os.getenv("DATABASE_URL")
     if not db_url:
-        raise RuntimeError("DATABASE_URL / TEST_DATABASE_URL is not set")
-
-    logger.info("Using database URL: %s", db_url)
-
+        raise RuntimeError("DATABASE_URL not set")
     return db_url
-
 
 # -------------------------------------------------------------------
 # SQLAlchemy async setup
 # -------------------------------------------------------------------
 DATABASE_URL = get_database_url()
 
+# 🚨 SAFETY GUARD — tests must NEVER use production DB
+if os.getenv("PYTEST_RUNNING") == "1":
+    if "library_db_test" not in DATABASE_URL:
+        raise RuntimeError("🚨 TESTS ARE POINTING TO PRODUCTION DATABASE!")
+
+logger.info("Using database URL: %s", DATABASE_URL)
+
 engine = create_async_engine(
     DATABASE_URL,
     echo=False,
-    pool_pre_ping=True,      # ⭐ checks if connection is alive
-    pool_recycle=1800,       # ♻️ refresh connections every 30 mins
+    pool_pre_ping=True,
+    pool_recycle=1800,
 )
 
 AsyncSessionLocal = sessionmaker(
